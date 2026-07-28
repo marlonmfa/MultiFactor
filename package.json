@@ -1,0 +1,17 @@
+{
+  "name": "cipher-share",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo-grade end-to-end encrypted file sharing",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "test:e2e": "playwright test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.0"
+  }
+}

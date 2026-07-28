@@ -1,0 +1,108 @@
+Context
+You are building a small internal prototype for a secure file sharing feature.
+
+The goal is to let one user send a file to another user through a web app, while ensuring the server cannot read the file contents.
+
+This is a local or demo-grade exercise, not a production security system. We care more about your design choices, code structure, and ability to ship a working vertical slice than about polish.
+Goal
+Build a minimal secure file sharing app where:
+
+A sender can upload a file through the web app
+The file is encrypted before it is stored on the server
+The server stores only encrypted file data
+The sender receives a shareable link and a secret
+The recipient uses the same web app to open the shared file
+The recipient enters the secret and decrypts the file locally in the web client
+Core Security Requirement
+The key requirement is that the server must not be able to read file contents.
+
+Your implementation should make the client/server boundary clear:
+
+Encryption should happen on the client before upload
+Decryption should happen in the web client after download
+The server should store ciphertext and any metadata you decide is necessary
+The server should not require access to the plaintext file or decryption key
+
+Use standard, vetted crypto libraries or platform APIs. Do not implement custom cryptography.
+What To Build
+Build a working application with the following flow:
+
+A sender selects a file in the web app.
+The app encrypts the file locally.
+The encrypted file is uploaded to the server.
+The app returns a shareable link or file identifier plus a secret.
+A recipient opens the shared file flow in the same web app.
+The recipient enters the secret.
+The app downloads the encrypted file and decrypts it locally.
+Core Requirements
+Your solution should include:
+
+A frontend UI for both the sender flow and recipient flow
+A backend or equivalent server-side layer for file storage and retrieval
+A clear encryption/decryption flow
+Graceful handling of invalid secrets or failed decryption
+
+At a minimum, the UI should support:
+
+Selecting and uploading a file
+Showing the sender the shareable link or file ID and secret
+Opening a shared file view
+Entering a secret to decrypt the file
+Downloading or previewing the decrypted file content
+Showing a clear error if the secret is wrong or decryption fails
+Scope Guidance
+Prioritize a working vertical slice. A simple, correct version is better than an ambitious incomplete one.
+
+Reasonable choices include:
+
+Supporting only a single file at a time
+Using local or in-memory storage, or a simple filesystem-backed store
+Supporting only smaller files
+Using a simple share ID rather than a full sharing model
+Keeping the UI minimal
+Stubbing or simplifying anything not central to secure file transfer
+Constraints
+Use any language, framework, or libraries you prefer.
+AI coding tools are allowed.
+The app should run locally.
+The recipient should use the same web app to retrieve the file.
+Do not spend time on a full authentication or user-management system.
+Do not build custom cryptography.
+Threat Model For This Exercise
+Assume:
+
+The sender and recipient trust the web client running locally in their browser
+The server and storage layer should not be able to read plaintext file contents
+It is acceptable if the server can see file size, upload time, and file identifier
+
+You do not need to solve:
+
+Multi-recipient sharing
+Revocation
+Resumable uploads
+Streaming encryption for very large files
+Perfect metadata privacy
+Production-grade key management
+Nice-To-Have Features
+If you finish the core flow, useful extensions include:
+
+Encrypting the filename or additional metadata
+Using a URL fragment for the secret so it is not sent to the server
+File expiration or one-time download
+A clearer recipient download experience
+A short explanation of the security tradeoffs in your README
+Deliverables
+By the end of the session, we should be able to:
+
+Run the application locally
+Upload a file as a sender
+Retrieve the share link or file ID and secret
+Open the recipient flow in the web app
+Enter the secret and decrypt the file locally
+Understand your architecture and tradeoffs from the code and your explanation
+
+Please add a short README if setup is not obvious.
+Notes
+You are not expected to build a production-ready secure file sharing product.
+You are not expected to implement a full auth system.
+If you would make a different architectural choice in a real system, say so and explain why.

@@ -1,0 +1,2 @@
+This message was encrypted in the sender's browser.
+Only the recipient with the secret can read it.

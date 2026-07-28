@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CipherShare</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <a class="brand" href="/">CipherShare</a>
+        <span>Private file transfer</span>
+      </header>
+
+      <section id="send-view" class="card">
+        <p class="eyebrow">Send securely</p>
+        <h1>Share a file the server can’t read.</h1>
+        <p class="lede">Your browser encrypts the file before upload. Share the generated link with your recipient.</p>
+        <form id="upload-form">
+          <label class="drop-zone" for="file-input">
+            <strong>Choose a file</strong>
+            <span id="file-label">Up to 25 MB</span>
+            <input id="file-input" type="file" required>
+          </label>
+          <button type="submit">Encrypt & upload</button>
+        </form>
+        <div id="upload-status" class="status" role="status" hidden></div>
+        <div id="share-result" class="result" hidden>
+          <h2>Your secure link is ready</h2>
+          <label for="share-link">Share this link</label>
+          <div class="copy-row">
+            <input id="share-link" readonly>
+            <button id="copy-link" class="secondary" type="button">Copy</button>
+          </div>
+          <details>
+            <summary>Show separate secret</summary>
+            <label for="share-secret">Secret key</label>
+            <div class="copy-row">
+              <input id="share-secret" readonly>
+              <button id="copy-secret" class="secondary" type="button">Copy</button>
+            </div>
+          </details>
+          <p class="note">The secret is in the part of the link after <code>#</code>. That fragment is not sent to the server.</p>
+        </div>
+      </section>
+
+      <section id="receive-view" class="card" hidden>
+        <p class="eyebrow">Receive securely</p>
+        <h1>Unlock your shared file.</h1>
+        <p class="lede">Decryption happens only in this browser.</p>
+        <form id="decrypt-form">
+          <label for="secret-input">Secret key</label>
+          <input id="secret-input" type="text" autocomplete="off" spellcheck="false" required>
+          <button type="submit">Decrypt file</button>
+        </form>
+        <div id="decrypt-status" class="status" role="status" hidden></div>
+        <div id="download-result" class="result" hidden>
+          <h2 id="decrypted-name"></h2>
+          <p id="decrypted-details"></p>
+          <a id="download-link" class="button" download>Download decrypted file</a>
+          <div id="preview"></div>
+        </div>
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
