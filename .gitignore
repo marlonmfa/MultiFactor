@@ -2,3 +2,22 @@ storage/
 node_modules/
 test-results/
 .DS_Store
+
+# --- claude-sync-ignore (2026-09-18) ---
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.ppk
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+node_modules/
+.venv/
+venv/
+__pycache__/
+.DS_Store
+*.log
